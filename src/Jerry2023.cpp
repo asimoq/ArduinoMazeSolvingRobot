@@ -22,9 +22,9 @@ unsigned long timer = 0;
 float lastCorrectAngle = 0;
 
 // IR sensor pins (analog inputs)
-#define IR_PIN_FRONT A1  // Front IR sensor connected to analog pin A1
-#define IR_PIN_RIGHT A2  // Right IR sensor connected to analog pin A2
-#define IR_PIN_LEFT A0   // Left IR sensor connected to analog pin A0
+#define IR_PIN_FRONT A15  // Front IR sensor connected to analog pin A1
+#define IR_PIN_RIGHT A0  // Right IR sensor connected to analog pin A2
+#define IR_PIN_LEFT A5   // Left IR sensor connected to analog pin A0
 
 #define RLED A8
 #define GLED A9
@@ -264,8 +264,8 @@ void PidDrive(double distanceFromMiddle, int maxSpeed, bool isThereAWall){
   if(pidmode==2) pid.SetTunings(Kp2,Ki2,Kd2);
   pid.Compute();
   // Motorok vezérlése a PID kimenet alapján
-  int motorSpeedLeft = constrain(maxSpeed - output, -50, 255); // Bal motor sebessége
-  int motorSpeedRight = constrain(maxSpeed + output, -50, 255); // Jobb motor sebessége
+  int motorSpeedRight = constrain(maxSpeed - output, -50, 255); // Bal motor sebessége
+  int motorSpeedLeft = constrain(maxSpeed + output, -50, 255); // Jobb motor sebessége
 
   // Motorok mozgatása
   drive(motorSpeedLeft,motorSpeedRight);
